@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import connectDB from './db/index.js';
 import dotenv from "dotenv";
 import methodOverride from 'method-override'
-
+import ejsMate from 'ejs-mate'
 
 
 dotenv.config({
@@ -21,6 +21,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 
+app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -34,7 +35,7 @@ app.use(express.static(path.join(__dirname, "/public")))
 
 
 app.get('/', (req,res) => {
-    res.render('index.ejs');
+    res.render('medicine/index.ejs');
   })
 
 connectDB()
